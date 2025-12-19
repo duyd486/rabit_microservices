@@ -9,9 +9,9 @@ RUN apt-get update && apt-get install -y \
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www/rabit_api_gateway
+WORKDIR /var/www/rabit_auth
 
-COPY . /var/www/rabit_api_gateway
+COPY . /var/www/rabit_auth
 # Copy composer files
 COPY composer.json composer.lock ./
 
@@ -23,7 +23,7 @@ RUN php artisan optimize:clear
 RUN composer dump-autoload --optimize && \
     php artisan package:discover --ansi
 
-RUN chown -R www-data:www-data /var/www/rabit_api_gateway \
+RUN chown -R www-data:www-data /var/www/rabit_auth \
     && chmod -R 775 storage bootstrap/cache
 
 CMD [ ! -f .env ] && cp .env.example .env || true && php-fpm
