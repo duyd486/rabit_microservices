@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  api_gateway_app:
+    build:
+      context: ./rabit_api_gateway
+      dockerfile: docker/php/Dockerfile
+    container_name: api_gateway_app
+    restart: always
+    volumes:
+      - .:/var/www
+      - /var/www/rabit_api_gateway/vendor
+    networks:
+      - laravel
+
+  api_gateway_web:
+    image: nginx:latest
+    container_name: gateway_web
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./rabit_api_gateway/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - api_gateway_app
+    networks:
+      - laravel
+
+
+
+  
+
+  db:
+    image: mysql:8.2
+    container_name: rabit_microservice_db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - laravel
+
+networks:
+  laravel:
+
+volumes:
+  dbdata:
