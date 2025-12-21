@@ -14,6 +14,25 @@ return [
     |
     */
 
+    'auth' => [
+        'base_url' => env('AUTH_SERVICE_BASE_URL'),
+    ],
+
+    'cart' => [
+        'base_url' => env('CART_SERVICE_BASE_URL'),
+    ],
+
+    'product' => [
+        'base_url' => env('PRODUCT_SERVICE_BASE_URL'),
+    ],
+
+    'order' => [
+        'base_url' => env('ORDER_SERVICE_BASE_URL'),
+    ],
+
+
+
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],

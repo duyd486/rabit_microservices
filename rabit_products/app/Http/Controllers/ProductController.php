@@ -74,7 +74,32 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try{
+            $product = Product::select('id', 'name', 'price', 'detail', 'quantity', 'total_sold', 'category_id')
+                            ->where('id', $id)
+                            ->with('images:product_id,image_url')
+                            ->with('category:id,name,thumbnail_url')
+                            ->first();
+            return ApiResponse::success($product);
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
+    }
+
+    public function similiar(Request $request, Product $id){
+        try{
+            $params = $request->all();
+            $products = Product::select('id', 'name', 'price', 'category_id')
+                                ->where('category_id', $id->category_id)
+                                ->where('id', '<>', $id->id)
+                                ->with('images:product_id,image_url')
+                                ->orderByDesc('total_sold')
+                                ->limit($params['limit'] ?? 10)
+                                ->get();
+            return ApiResponse::success($products);
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     /**

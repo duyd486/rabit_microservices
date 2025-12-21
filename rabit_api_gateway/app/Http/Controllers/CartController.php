@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ApiResponse;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        try{
-            $categories = Category::select('id','name','parent_id','thumbnail_url')->where('parent_id', '=', 0)->with('childrens:id,parent_id,name,thumbnail_url')->get();
-            return $categories;
-        } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
-        }
+        //
     }
 
     /**

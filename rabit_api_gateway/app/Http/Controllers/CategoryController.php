@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
-use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CategoryController extends Controller
 {
@@ -14,8 +14,20 @@ class CategoryController extends Controller
     public function index()
     {
         try{
-            $categories = Category::select('id','name','parent_id','thumbnail_url')->where('parent_id', '=', 0)->with('childrens:id,parent_id,name,thumbnail_url')->get();
-            return $categories;
+            $response = Http::get(
+                config('services.product.base_url') . '/api/categories/index'
+            );
+
+            if ($response->failed()) {
+                return response()->json(
+                    $response->json(),
+                    $response->status()
+                );
+            }
+            return response()->json(
+                $response->json(),
+                $response->status()
+            );
         } catch(\Throwable $th){
             return ApiResponse::internalServerError($th);
         }
