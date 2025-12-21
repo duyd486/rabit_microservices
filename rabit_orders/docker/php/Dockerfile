@@ -6,18 +6,16 @@ RUN apt-get update && apt-get install -y \
     libonig-dev libsqlite3-dev libpq-dev \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/rabit_orders
 
-COPY . /var/www/rabit_orders
-# Copy composer files
 COPY composer.json composer.lock ./
 
 # composer
 RUN composer install --dev --optimize-autoloader --no-interaction --no-scripts
 
+COPY . /var/www/rabit_orders
 
 RUN composer dump-autoload --optimize && \
 php artisan package:discover --ansi
