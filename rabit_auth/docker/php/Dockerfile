@@ -16,7 +16,7 @@ COPY . /var/www/rabit_auth
 COPY composer.json composer.lock ./
 
 # composer
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+RUN composer install --dev --optimize-autoloader --no-interaction --no-scripts
 
 RUN composer dump-autoload --optimize && \
     php artisan package:discover --ansi
