@@ -10,6 +10,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+Route::middleware('jwt.auth')->group(function() {
+    // Route::get('list-product', [ProductController::class, 'index']);
+    // Route::get('list-category', [CategoryController::class, 'index']);
+});
 
 
 Route::prefix('product')->group(function () {

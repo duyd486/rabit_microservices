@@ -1,6 +1,22 @@
 version: "3.9"
 
 services:
+
+  db:
+    image: mysql:8.2
+    container_name: rabit_microservice_db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - laravel
+
+
   api_gateway_app:
     build:
       context: ./rabit_api_gateway
@@ -131,23 +147,6 @@ services:
       - ./rabit_orders/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - orders_app
-    networks:
-      - laravel
-
-
-  db:
-    image: mysql:8.2
-    container_name: rabit_microservice_db
-    restart: always
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel
-      MYSQL_PASSWORD: laravel
-    volumes:
-      - dbdata:/var/lib/mysql
     networks:
       - laravel
 
