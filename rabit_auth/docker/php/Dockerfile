@@ -13,14 +13,14 @@ WORKDIR /var/www/rabit_auth
 COPY composer.json composer.lock ./
 
 # composer
-RUN composer install --dev --optimize-autoloader --no-interaction --no-scripts
+RUN composer install --optimize-autoloader --no-interaction --no-scripts
 
 COPY . /var/www/rabit_auth
 
-RUN composer dump-autoload --optimize && \
-    php artisan package:discover --ansi
+# RUN composer dump-autoload --optimize && \
+#     php artisan package:discover --ansi
 
 RUN chown -R www-data:www-data /var/www/rabit_auth \
     && chmod -R 775 storage bootstrap/cache
 
-CMD [ ! -f .env ] && cp .env.example .env || true && php artisan migrate:fresh --seed --force && php-fpm
+CMD cp .env.example .env && php artisan migrate:fresh --seed --force && php-fpm

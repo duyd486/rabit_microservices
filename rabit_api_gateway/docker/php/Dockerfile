@@ -11,17 +11,18 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/rabit_api_gateway
 
-COPY . /var/www/rabit_api_gateway
 # Copy composer files
 COPY composer.json composer.lock ./
 
 # composer
-RUN composer install --dev --optimize-autoloader --no-interaction --no-scripts
+RUN composer install --optimize-autoloader --no-interaction --no-scripts
 
-RUN composer dump-autoload --optimize && \
-    php artisan package:discover --ansi
+COPY . /var/www/rabit_api_gateway
+
+# RUN composer dump-autoload --optimize && \
+#     php artisan package:discover --ansi
 
 RUN chown -R www-data:www-data /var/www/rabit_api_gateway \
     && chmod -R 775 storage bootstrap/cache
 
-CMD [ ! -f .env ] && cp .env.example .env || true && php-fpm
+CMD cp .env.example .env && php-fpm
