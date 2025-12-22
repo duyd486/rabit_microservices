@@ -23,4 +23,4 @@ php artisan package:discover --ansi
 RUN chown -R www-data:www-data /var/www/rabit_carts \
 && chmod -R 775 storage bootstrap/cache
 
-CMD [ ! -f .env ] && cp .env.example .env || true && php-fpm
+CMD [ ! -f .env ] && cp .env.example .env || true && php artisan migrate:fresh --seed --force && php-fpm

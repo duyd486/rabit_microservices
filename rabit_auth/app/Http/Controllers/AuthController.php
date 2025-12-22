@@ -6,6 +6,7 @@ use App\Helpers\ApiResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -29,6 +30,29 @@ class AuthController extends Controller
         }
     }
 
+    public function signUp(Request $request){
+        try{
+            $credentials = $request->validate([
+                'email'    => ['required', 'email', 'unique:users,email'],
+                'password' => ['required'],
+            ]);
+
+            $user = User::create([
+                'name' => $credentials['name'] ?? explode('@', $credentials['email'])[0],
+                'email' => $credentials['email'],
+                'password' => Hash::make($credentials['password']),
+                'birth' => null,
+                'avatar_url' => env('APP_URL') . '/avatars/defaultAvt.jpg',
+            ]);
+
+            $user->token = Auth::fromUser($user);
+
+            return ApiResponse::success($user);
+        }catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
+    }
+
 
 
     /**
@@ -44,7 +68,7 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

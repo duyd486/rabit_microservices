@@ -26,6 +26,8 @@ services:
     volumes:
       - .:/var/www
       - /var/www/rabit_api_gateway/vendor
+    depends_on:
+      - db
     networks:
       - laravel
 
@@ -38,6 +40,8 @@ services:
     volumes:
       - .:/var/www
       - /var/www/rabit_auth/vendor
+    depends_on:
+      - db
     networks:
       - laravel
 
@@ -50,6 +54,8 @@ services:
     volumes:
       - .:/var/www
       - /var/www/rabit_carts/vendor
+    depends_on:
+      - db
     networks:
       - laravel
 
@@ -62,6 +68,8 @@ services:
     volumes:
       - .:/var/www
       - /var/www/rabit_products/vendor
+    depends_on:
+      - db
     networks:
       - laravel
 
@@ -74,6 +82,8 @@ services:
     volumes:
       - .:/var/www
       - /var/www/rabit_orders/vendor
+    depends_on:
+      - db
     networks:
       - laravel
 

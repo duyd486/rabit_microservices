@@ -11,8 +11,20 @@ Route::get('/user', function (Request $request) {
 
 
 Route::middleware('jwt.auth')->group(function() {
-    // Route::get('list-product', [ProductController::class, 'index']);
-    // Route::get('list-category', [CategoryController::class, 'index']);
+
+    Route::prefix('cart')->group(function () {
+        
+    });
+
+    Route::prefix('address')->group(function () {
+        
+    });
+
+
+    Route::prefix('bill')->group(function () {
+        
+    });
+
 });
 
 
