@@ -14,22 +14,40 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-        $params = $request->all();
-        $userId = $params['userId'];
+        try{
+            $params = $request->all();
+            $userId = $params['userId'];
 
-        $cartItems = Cart::where('user_id', $userId)->get();
+            $cartItems = Cart::where('user_id', $userId)->get();
 
-        $productIds = $cartItems->pluck('product_id')->unique()->values();
+            $cartMap = $cartItems->keyBy('product_id');
 
-        $response = Http::get(
-            'http://products_web:80' . '/api/products/by-ids',
-            ['ids' => $productIds]
-        );
+            $productIds = $cartItems->pluck('product_id')->unique()->values();
 
-        $products = $response->json();
+            $response = Http::post(
+                'http://products_web:80/api/products/by-ids',
+                [
+                    'ids' => $productIds
+                ]
+            );
 
+            if (!$response->successful()) {
+                return ApiResponse::success("Service Product lỗi");
+            }
 
-        return ApiResponse::success($products);
+            $products = collect($response->json());
+
+            $result = $products->map(function ($product) use ($cartMap) {
+                return [
+                    'product' => $product,
+                    'quantity' => $cartMap[$product['id']]->quantity
+                ];
+            });
+
+            return ApiResponse::success($result);
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     /**

@@ -15,27 +15,15 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-        // try{
+        try{
             $userId = JWTAuth::parseToken()->getPayload()->get('sub');
             $response = Http::get(
                 config('services.cart.base_url') . '/api/index?userId=' . $userId
             );
-
-            // $response = Http::get(
-            //     'http://products_web:80' . '/api/products/by-ids',
-            //     ['ids' => [ 1, 2, 4]]
-            // );
-
-
-
-
-
-
-
             return $response->json();
-        // } catch(\Throwable $th){
-        //     ApiResponse::internalServerError($th);
-        // }
+        } catch(\Throwable $th){
+            ApiResponse::internalServerError($th);
+        }
     }
 
     /**

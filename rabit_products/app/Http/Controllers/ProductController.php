@@ -88,16 +88,11 @@ class ProductController extends Controller
 
 
     public function showByIds(Request $request){
-        $params = $request->all();
+        $ids = $request->get('ids'); // array
 
-        // $request->validate([
-        //     'ids'   => 'required|array',
-        //     'ids.*' => 'integer'
-        // ]);
+        $products = Product::select('id', 'name', 'price', 'category_id')->with('images:product_id,image_url')->whereIn('id', $ids)->get();
 
-        $products = Product::whereIn('id', $request->ids)->get();
-
-        return [1,2,3];
+        return response()->json($products);
     }
 
 
