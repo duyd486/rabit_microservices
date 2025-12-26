@@ -13,6 +13,7 @@ Route::prefix('products')->group(function () {
     Route::get('index', [ProductController::class, 'index']);
     Route::get('show/{id}', [ProductController::class, 'show']);
     Route::get('similiar/{id}', [ProductController::class, 'similiar']);
+    Route::get('by-ids', [ProductController::class, 'showByIds']);
 });
 
 Route::prefix('categories')->group(function () {

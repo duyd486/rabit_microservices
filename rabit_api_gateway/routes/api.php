@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ Route::get('/user', function (Request $request) {
 Route::middleware('jwt.auth')->group(function() {
 
     Route::prefix('cart')->group(function () {
-        
+        Route::get('list-product', [CartController::class, 'index']);
+        Route::get('update-product', [CartController::class, 'store']);
     });
 
     Route::prefix('address')->group(function () {

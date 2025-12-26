@@ -86,6 +86,21 @@ class ProductController extends Controller
         }
     }
 
+
+    public function showByIds(Request $request){
+        $params = $request->all();
+
+        // $request->validate([
+        //     'ids'   => 'required|array',
+        //     'ids.*' => 'integer'
+        // ]);
+
+        $products = Product::whereIn('id', $request->ids)->get();
+
+        return [1,2,3];
+    }
+
+
     public function similiar(Request $request, Product $id){
         try{
             $params = $request->all();

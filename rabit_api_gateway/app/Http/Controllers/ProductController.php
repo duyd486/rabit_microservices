@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        // try{
+        try{
             $params = $request->all();
             $response = Http::get(
                 config('services.product.base_url') . '/api/products/index',
@@ -36,11 +36,11 @@ class ProductController extends Controller
             }
             return response()->json(
                 $response->json(),
-                $response->status()
+                // $response->status()
             );
-        // } catch(\Throwable $th){
-        //     return ApiResponse::internalServerError($th);
-        // }
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     /**

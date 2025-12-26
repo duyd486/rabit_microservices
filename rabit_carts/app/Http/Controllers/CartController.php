@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
+use App\Models\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CartController extends Controller
 {
@@ -15,27 +14,22 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-        // try{
-            $userId = JWTAuth::parseToken()->getPayload()->get('sub');
-            $response = Http::get(
-                config('services.cart.base_url') . '/api/index?userId=' . $userId
-            );
+        $params = $request->all();
+        $userId = $params['userId'];
 
-            // $response = Http::get(
-            //     'http://products_web:80' . '/api/products/by-ids',
-            //     ['ids' => [ 1, 2, 4]]
-            // );
+        $cartItems = Cart::where('user_id', $userId)->get();
 
+        $productIds = $cartItems->pluck('product_id')->unique()->values();
 
+        $response = Http::get(
+            'http://products_web:80' . '/api/products/by-ids',
+            ['ids' => $productIds]
+        );
 
-
-
+        $products = $response->json();
 
 
-            return $response->json();
-        // } catch(\Throwable $th){
-        //     ApiResponse::internalServerError($th);
-        // }
+        return ApiResponse::success($products);
     }
 
     /**
