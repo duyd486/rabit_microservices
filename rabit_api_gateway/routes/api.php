@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -19,15 +20,17 @@ Route::middleware('jwt.auth')->group(function() {
         Route::get('clear-cart', [CartController::class, 'clear']);
     });
 
-    Route::prefix('address')->group(function () {
-        
+    Route::group(['prefix' => 'address'], function(){
+        Route::get('list-address', [AddressController::class, 'index']);
+        Route::get('add-address', [AddressController::class, 'store']);
+        Route::get('update-address/{id}', [AddressController::class, 'update']);
+        Route::get('delete-address/{id}', [AddressController::class, 'destroy']);
     });
 
-
-    Route::prefix('bill')->group(function () {
-        
+    Route::group(['prefix' => 'bill'], function(){
+        // Route::post('create-bill', [BillController::class, 'createBill']);
+        // Route::get('index', [BillController::class, 'index']);
     });
-
 });
 
 

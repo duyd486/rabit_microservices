@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ApiResponse;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Http;
 
 class AddressController extends Controller
 {
@@ -11,7 +14,16 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $userId = JWTAuth::parseToken()->getPayload()->get('sub');
+            $response = Http::get(
+                config('services.order.base_url') . '/api/address/index',
+                ['user_id' => $userId]
+            );
+            return $response->json();
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     /**
@@ -19,7 +31,21 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $userId = JWTAuth::parseToken()->getPayload()->get('sub');
+            $validated = $request->validate([
+                'addresses' => ['required'],
+                'phone' => ['required'],
+            ]);
+            $validated['user_id'] = $userId;
+            $response = Http::post(
+                config('services.order.base_url') . '/api/address/store',
+                $validated
+            );
+            return $response->json();
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     /**
@@ -35,7 +61,20 @@ class AddressController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $userId = JWTAuth::parseToken()->getPayload()->get('sub');
+            $validated = $request->validate([
+                'addresses' => ['required'],
+                'phone' => ['required'],
+            ]);
+            $response = Http::post(
+                config('services.order.base_url') . '/api/address/update/' . $id,
+                $validated
+            );
+            return $response->json();
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     /**
@@ -43,6 +82,13 @@ class AddressController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $response = Http::get(
+                config('services.order.base_url') . '/api/address/destroy/' . $id
+            );
+            return $response->json();
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 }
