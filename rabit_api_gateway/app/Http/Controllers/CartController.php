@@ -70,6 +70,20 @@ class CartController extends Controller
         }
     }
 
+    public function clear(Request $request){
+        try{
+            $userId = JWTAuth::parseToken()->getPayload()->get('sub');
+
+            $response = Http::get(
+                config('services.cart.base_url') . '/api/clear',
+                ['user_id' => $userId]
+            );
+            return $response->json();
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      */

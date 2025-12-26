@@ -10,3 +10,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('index', [CartController::class, 'index']);
 Route::post('update', [CartController::class, 'update']);
+Route::get('clear', [CartController::class, 'clear']);

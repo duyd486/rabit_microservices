@@ -125,9 +125,19 @@ class CartController extends Controller
     }
 
 
-    public function clearProducts(int $userId)
+    public function clear(Request $request)
     {
-        Cart::where('user_id', $userId)->delete();
+        try{
+            $validated = $request->validate([
+                'user_id' => ['required', 'integer'],
+            ]);
+
+            Cart::where('user_id', $validated['user_id'])->delete();
+
+            return ApiResponse::success('Xóa giỏ hàng thành công!');
+        }catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     private function changeQuantity(int $userId, int $productId, int $quantity)
