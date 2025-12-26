@@ -6,6 +6,7 @@ use App\Helpers\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CartController extends Controller
@@ -45,9 +46,28 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        try{
+            $validated = $request->validate([
+                'product_id' => ['required'],
+                'update_type' => ['required'],
+                'quantity' => ['nullable'],
+            ]);
+            $userId = JWTAuth::parseToken()->getPayload()->get('sub');
+
+            $validated['user_id'] = $userId;
+
+            $response = Http::post(
+                config('services.cart.base_url') . '/api/update',
+                $validated
+            );
+
+            return $response->json();
+        }
+        catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
     /**

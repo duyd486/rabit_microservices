@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('index', [CartController::class, 'index']);
+Route::post('update', [CartController::class, 'update']);

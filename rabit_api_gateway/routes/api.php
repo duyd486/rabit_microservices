@@ -15,7 +15,7 @@ Route::middleware('jwt.auth')->group(function() {
 
     Route::prefix('cart')->group(function () {
         Route::get('list-product', [CartController::class, 'index']);
-        Route::get('update-product', [CartController::class, 'store']);
+        Route::get('update-product', [CartController::class, 'update']);
     });
 
     Route::prefix('address')->group(function () {
