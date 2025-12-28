@@ -19,25 +19,7 @@ class ProductController extends Controller
                 config('services.product.base_url') . '/api/products/index',
                 $params
             );
-            // $data = $response->json();
-            // return $data;
-
-            // return response(
-            //     $response->body(),
-            //     $response->status(),
-            //     ['Content-Type' => 'application/json']
-            // );
-
-            if ($response->failed()) {
-                return response()->json(
-                    $response->json(),
-                    $response->status()
-                );
-            }
-            return response()->json(
-                $response->json(),
-                // $response->status()
-            );
+            return $response->json();
         } catch(\Throwable $th){
             return ApiResponse::internalServerError($th);
         }

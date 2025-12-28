@@ -72,27 +72,43 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
         try{
-            $product = Product::select('id', 'name', 'price', 'detail', 'quantity', 'total_sold', 'category_id')
-                            ->where('id', $id)
-                            ->with('images:product_id,image_url')
-                            ->with('category:id,name,thumbnail_url')
-                            ->first();
-            return ApiResponse::success($product);
+            $fields = $request->query('fields');
+            if(!$fields){
+                $product = Product::select('id', 'name', 'price', 'detail', 'quantity', 'total_sold', 'category_id')
+                                ->where('id', $id)
+                                ->with('images:product_id,image_url')
+                                ->with('category:id,name,thumbnail_url')
+                                ->first();
+                return ApiResponse::success($product);
+            } else{
+                $product = Product::select('id', 'name', 'price', 'quantity')
+                                ->where('id', $id)
+                                ->first();
+                return ApiResponse::success($product);
+            }
         } catch(\Throwable $th){
             return ApiResponse::internalServerError($th);
         }
     }
 
-
     public function showByIds(Request $request){
-        $ids = $request->get('ids'); // array
+        try{
+            $fields = $request->query('fields');
+            $ids = $request->get('ids'); // array
 
-        $products = Product::select('id', 'name', 'price', 'category_id')->with('images:product_id,image_url')->whereIn('id', $ids)->get();
-
-        return response()->json($products);
+            if(!$fields){
+                $products = Product::select('id', 'name', 'price', 'category_id')->with('images:product_id,image_url')->whereIn('id', $ids)->get();
+                return ApiResponse::success($products);
+            } else{
+                $products = Product::select('id', 'name', 'price')->whereIn('id', $ids)->get();
+                return ApiResponse::success($products);
+            }
+        } catch(\Throwable $th){
+            return ApiResponse::internalServerError($th);
+        }
     }
 
 

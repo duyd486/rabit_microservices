@@ -35,7 +35,7 @@ class CartController extends Controller
                 return ApiResponse::success("Service Product lỗi");
             }
 
-            $products = collect($response->json());
+            $products = collect($response->json()['data']);
 
             $result = $products->map(function ($product) use ($cartMap) {
                 return [

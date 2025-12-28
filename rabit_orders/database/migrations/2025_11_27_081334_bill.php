@@ -14,7 +14,7 @@ return new class extends Migration
          Schema::create('bill', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
-            $table->string('address_id')->nullable();
+            $table->string('address')->nullable();
             $table->integer('status')->nullable();
             $table->float('total_price')->nullable();
             $table->integer('order_code')->nullable();
