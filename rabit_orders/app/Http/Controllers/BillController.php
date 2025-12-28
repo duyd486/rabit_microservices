@@ -158,6 +158,28 @@ class BillController extends Controller
                 $bill->save();
                 // Call Payment Service
                 // return $this->createPaymentLink($bill, $products);
+                $payload = [
+                    'order_code' => $bill->order_code,
+                    'amount' => $bill->total_price,
+                    'description' => "Thanh toán hóa đơn {$bill->order_code}",
+                    'items' => $products,
+                    'return_url' => 'http://google.com',
+                    'cancel_url' => 'http://chatgpt.com',
+                ];
+                $response = Http::post(
+                    'http://payments_web:80/api/payos/payment-link',
+                    $payload
+                );
+
+                if (!$response->successful()) {
+                    throw new \Exception('Cannot create payment link');
+                }
+
+                return ApiResponse::success([
+                    'bill' => $bill,
+                    'payment' => $response->json(),
+                ]);
+
             } else {
                 $bill->status = 4;
                 $bill->save();
