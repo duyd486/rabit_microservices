@@ -171,9 +171,9 @@ class BillController extends Controller
                     $payload
                 );
 
-                if (!$response->successful()) {
-                    throw new \Exception('Cannot create payment link');
-                }
+                // if (!$response->successful()) {
+                //     throw new \Exception('Cannot create payment link');
+                // }
 
                 return ApiResponse::success([
                     'bill' => $bill,

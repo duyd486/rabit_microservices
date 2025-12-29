@@ -39,11 +39,16 @@ class PayOsController extends Controller
                 'items' => $data['items'],
                 'returnUrl' => $data['return_url'],
                 'cancelUrl' => $data['cancel_url'],
-                'expiredAt' => now()->addMinutes(10)->timestamp,
+                // 'expiredAt' => now()->addMinutes(10)->timestamp,
             ]);
 
             return ApiResponse::success($res);
         } catch(\Throwable $th){
+            Log::error('PayOS error', [
+                'code' => $th->getCode(),
+                'message' => $th->getMessage(),
+                'trace' => $th->getTraceAsString()
+            ]);
             return ApiResponse::internalServerError($th->getMessage());
         }
     }
