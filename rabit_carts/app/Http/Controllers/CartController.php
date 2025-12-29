@@ -76,7 +76,7 @@ class CartController extends Controller
                 'user_id' => ['required'],
                 'product_id' => ['required'],
                 'update_type' => ['required'],
-                'quantity' => ['nullable'],
+                'quantity' => ['nullable|integer|min:1'],
             ]);
 
             $message = '';
@@ -90,10 +90,9 @@ class CartController extends Controller
 
             switch ($params['update_type'] ?? 'default') {
                 case 'add':
-                    $this->add($userId, $productId);
+                    $this->add($userId, $productId, $params['quantity']);
                     $message = 'Thêm thành công';
                     break;
-
                 case 'minus':
                     $this->minus($userId, $productId);
                     $message = 'Giảm thành công';
@@ -153,19 +152,19 @@ class CartController extends Controller
             ]);
     }
 
-    private function add(int $userId, int $productId)
+    private function add(int $userId, int $productId, int $quantity)
     {
         $item = Cart::where('user_id', $userId)
             ->where('product_id', $productId)
             ->first();
 
         if ($item) {
-            $item->increment('quantity');
+            $item->increment('quantity', $quantity ?? 1);
         } else {
             Cart::create([
                 'user_id' => $userId,
                 'product_id' => $productId,
-                'quantity' => 1
+                'quantity' => $quantity ?? 1
             ]);
         }
     }
