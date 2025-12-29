@@ -42,7 +42,7 @@ class AuthController extends Controller
                 'email' => $credentials['email'],
                 'password' => Hash::make($credentials['password']),
                 'birth' => null,
-                'avatar_url' => env('APP_URL') . '/avatars/defaultAvt.jpg',
+                'avatar_url' => 'http://127.0.0.1:8000/avatars/defaultAvt.jpg',
             ]);
 
             $user->token = Auth::fromUser($user);
