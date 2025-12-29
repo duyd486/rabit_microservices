@@ -19,4 +19,5 @@ Route::group(['prefix' => 'address'], function(){
 Route::group(['prefix' => 'bill'], function(){
     Route::get('index', [BillController::class, 'index']);
     Route::post('store', [BillController::class, 'store']);
+    Route::get('update', [BillController::class, 'update']);
 });

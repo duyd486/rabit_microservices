@@ -21,7 +21,7 @@ class ProductController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -54,7 +54,7 @@ class ProductController extends Controller
                 $response->status()
             );
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -77,7 +77,7 @@ class ProductController extends Controller
                 $response->status()
             );
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 

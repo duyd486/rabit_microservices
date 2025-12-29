@@ -10,4 +10,5 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'payos'], function(){
     Route::post('payment-link', [PayOsController::class, 'createPaymentLink']);
+    Route::get('status', [PayOsController::class, 'status']);
 });

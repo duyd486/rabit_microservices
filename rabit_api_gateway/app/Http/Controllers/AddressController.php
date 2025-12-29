@@ -22,7 +22,7 @@ class AddressController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ class AddressController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -73,7 +73,7 @@ class AddressController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -88,7 +88,7 @@ class AddressController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 }

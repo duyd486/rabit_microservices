@@ -63,7 +63,7 @@ class ProductController extends Controller
             return ApiResponse::success($products);
             
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ class ProductController extends Controller
                 return ApiResponse::success($product);
             }
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -113,7 +113,7 @@ class ProductController extends Controller
                 return ApiResponse::success($products);
             }
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -130,7 +130,7 @@ class ProductController extends Controller
                                 ->get();
             return ApiResponse::success($products);
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 

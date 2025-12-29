@@ -44,7 +44,7 @@ class BillController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 

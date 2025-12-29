@@ -26,7 +26,7 @@ class AuthController extends Controller
 
             return ApiResponse::success($user);
         }catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ class AuthController extends Controller
 
             return ApiResponse::success($user);
         }catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 

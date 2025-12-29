@@ -17,7 +17,7 @@ class CategoryController extends Controller
             $categories = Category::select('id','name','parent_id','thumbnail_url')->where('parent_id', '=', 0)->with('childrens:id,parent_id,name,thumbnail_url')->get();
             return ApiResponse::success($categories);
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 

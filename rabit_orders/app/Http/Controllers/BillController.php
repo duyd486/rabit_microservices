@@ -75,7 +75,7 @@ class BillController extends Controller
             return ApiResponse::success($bills);
 
         } catch (\Throwable $th) {
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -181,13 +181,13 @@ class BillController extends Controller
                 ]);
 
             } else {
-                $bill->status = 4;
+                $bill->status = Bill::STATUS_PENDING;
                 $bill->save();
             }
 
             return ApiResponse::success($bill);
         }catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -202,9 +202,37 @@ class BillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        try{
+            $orderCode = $request->input('order_code');
+            $status = $request->input('status');
+
+            $bill = Bill::where('order_code', $orderCode)->first();
+
+            switch ($status) {
+                case 'PAID':
+                    $bill->status = Bill::STATUS_PAID;
+                    break;
+
+                case 'PENDING':
+                    $bill->status = Bill::STATUS_PENDING;
+                    break;
+
+                case 'PROCESSING':
+                    $bill->status = Bill::STATUS_PROCESSING;
+                    break;
+
+                case 'FAILED':
+                default:
+                    $bill->status = Bill::STATUS_FAILED;
+                    break;
+            }
+            $bill->save();
+            return ApiResponse::success($bill);
+        } catch (\Throwable $th) {
+            return ApiResponse::internalServerError($th->getMessage());
+        }
     }
 
     /**

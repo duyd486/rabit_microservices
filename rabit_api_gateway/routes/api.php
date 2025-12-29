@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::middleware('jwt.auth')->group(function() {
     Route::group(['prefix' => 'bill'], function(){
         Route::post('create-bill', [BillController::class, 'store']);
         Route::get('index', [BillController::class, 'index']);
+        Route::get('status', [PaymentController::class, 'status']);
     });
 });
 

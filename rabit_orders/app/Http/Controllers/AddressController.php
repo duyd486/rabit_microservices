@@ -21,7 +21,7 @@ class AddressController extends Controller
             $addresses = Address::select('addresses', 'phone')->where('user_id', $userId)->limit($limit ?? 6)->get();
             return ApiResponse::success($addresses);
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -49,7 +49,7 @@ class AddressController extends Controller
 
             return ApiResponse::success($item);
         }catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ class AddressController extends Controller
 
             return ApiResponse::success($id);
         }catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ class AddressController extends Controller
 
             return ApiResponse::success('Xóa thành công');
         }catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 }

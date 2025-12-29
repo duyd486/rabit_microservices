@@ -23,7 +23,7 @@ class CartController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            ApiResponse::internalServerError($th);
+            ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -66,7 +66,7 @@ class CartController extends Controller
             return $response->json();
         }
         catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -80,7 +80,7 @@ class CartController extends Controller
             );
             return $response->json();
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 

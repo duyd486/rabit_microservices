@@ -30,7 +30,9 @@ return [
         'base_url' => env('ORDER_SERVICE_BASE_URL'),
     ],
 
-
+    'payment' => [
+        'base_url' => env('PAYMENT_SERVICE_BASE_URL'),
+    ],
 
 
     'postmark' => [

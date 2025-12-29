@@ -46,7 +46,7 @@ class CartController extends Controller
 
             return ApiResponse::success($result);
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -120,7 +120,7 @@ class CartController extends Controller
 
             return ApiResponse::success($message);
         } catch(\Throwable $th){
-            return ApiResponse::internalServerError("Cart Service lỗi");
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 
@@ -136,7 +136,7 @@ class CartController extends Controller
 
             return ApiResponse::success('Xóa giỏ hàng thành công!');
         }catch(\Throwable $th){
-            return ApiResponse::internalServerError($th);
+            return ApiResponse::internalServerError($th->getMessage());
         }
     }
 

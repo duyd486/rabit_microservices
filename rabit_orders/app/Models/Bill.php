@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bill extends Model
 {
+
+    const STATUS_FAILED = 0;
+    const STATUS_PROCESSING = 1;
+    const STATUS_PENDING = 2;
+    const STATUS_PAID = 3;
+
     protected $table = 'bill';
     protected $fillable = [
         'status',
