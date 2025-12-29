@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,12 @@ class ProductController extends Controller
 
             if(!empty($params['category_id'])){
                 $category_id = $params['category_id'];
-                $products->where('category_id', $category_id);
+
+                $categoryIds = Category::where('id', $category_id)
+                                ->orWhere('parent_id', $category_id)
+                                ->pluck('id');
+
+                $products->whereIn('category_id', $categoryIds);
             }
 
             if (!empty($params['search_key'])) {
