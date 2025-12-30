@@ -163,8 +163,8 @@ class BillController extends Controller
                     'amount' => $bill->total_price,
                     'description' => "Thanh toán hóa đơn {$bill->order_code}",
                     'items' => $products,
-                    'return_url' => 'http://google.com',
-                    'cancel_url' => 'http://chatgpt.com',
+                    'return_url' => 'http://localhost:5173/profile/orders',
+                    'cancel_url' => 'http://localhost:5173/',
                 ];
                 $response = Http::post(
                     'http://payments_web:80/api/payos/payment-link',
