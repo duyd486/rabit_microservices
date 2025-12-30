@@ -76,7 +76,7 @@ class CartController extends Controller
                 'user_id' => ['required'],
                 'product_id' => ['required'],
                 'update_type' => ['required'],
-                'quantity' => ['nullable|integer|min:1'],
+                'quantity' => ['nullable'],
             ]);
 
             $message = '';
@@ -90,7 +90,7 @@ class CartController extends Controller
 
             switch ($params['update_type'] ?? 'default') {
                 case 'add':
-                    $this->add($userId, $productId, $params['quantity']);
+                    $this->add($userId, $productId, $params['quantity'] ?? 1);
                     $message = 'Thêm thành công';
                     break;
                 case 'minus':
