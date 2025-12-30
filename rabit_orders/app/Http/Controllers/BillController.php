@@ -174,7 +174,7 @@ class BillController extends Controller
                     'description' => "Thanh toán hóa đơn {$bill->order_code}",
                     'items' => $products,
                     'return_url' => 'http://localhost:5173/profile/orders',
-                    'cancel_url' => 'http://localhost:5173/',
+                    'cancel_url' => 'http://localhost:5173/profile/orders',
                 ];
                 $response = Http::post(
                     'http://payments_web:80/api/payos/payment-link',
