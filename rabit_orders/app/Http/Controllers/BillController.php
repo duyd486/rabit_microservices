@@ -142,6 +142,16 @@ class BillController extends Controller
                     'bill_id' => $bill->id,
                 ]);
 
+                $response = Http::timeout(3)->post(
+                    'http://carts_web:80/api/update',
+                    [
+                        'user_id' => $userId,
+                        'product_id' => $item['id'],
+                        'update_type' => 'minus',
+                        'quantity' => $item['quantity'],
+                    ]
+                );
+
                 $products[] = [
                     'name' => $product['name'],
                     'quantity' => $item['quantity'],
