@@ -163,7 +163,7 @@ class BillController extends Controller
                     'amount' => $bill->total_price,
                     'description' => "Thanh toán hóa đơn {$bill->order_code}",
                     'items' => $products,
-                    'return_url' => 'http://localhost:5173/profile/orders',
+                    'return_url' => 'http://localhost:5173/profile/orders?order_code=' . $bill->order_code,
                     'cancel_url' => 'http://localhost:5173/',
                 ];
                 $response = Http::post(
