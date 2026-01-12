@@ -76,7 +76,7 @@ class CartController extends Controller
                 'user_id' => ['required'],
                 'product_id' => ['required'],
                 'update_type' => ['required'],
-                'quantity' => ['nullable|integer|min:1'],
+                'quantity' => ['nullable'],
             ]);
 
             $message = '';
@@ -90,11 +90,11 @@ class CartController extends Controller
 
             switch ($params['update_type'] ?? 'default') {
                 case 'add':
-                    $this->add($userId, $productId, $params['quantity']);
+                    $this->add($userId, $productId, $params['quantity'] ?? 1);
                     $message = 'Thêm thành công';
                     break;
                 case 'minus':
-                    $this->minus($userId, $productId);
+                    $this->minus($userId, $productId, $params['quantity'] ?? 1);
                     $message = 'Giảm thành công';
                     break;
 
@@ -129,9 +129,17 @@ class CartController extends Controller
         try{
             $validated = $request->validate([
                 'user_id' => ['required', 'integer'],
+                'product_ids' => ['nullable', 'array'],
+                'product_ids.*' => ['integer'],
             ]);
 
-            Cart::where('user_id', $validated['user_id'])->delete();
+            $query = Cart::where('user_id', $validated['user_id']);
+
+            if (!empty($validated['product_ids'])) {
+                $query->whereIn('product_id', $validated['product_ids']);
+            }
+
+            $deleted = $query->delete();
 
             return ApiResponse::success('Xóa giỏ hàng thành công!');
         }catch(\Throwable $th){
@@ -169,7 +177,7 @@ class CartController extends Controller
         }
     }
 
-    private function minus(int $userId, int $productId)
+    private function minus(int $userId, int $productId, int $quantity)
     {
         $item = Cart::where('user_id', $userId)
             ->where('product_id', $productId)
@@ -179,10 +187,10 @@ class CartController extends Controller
             return;
         }
 
-        if ($item->quantity <= 1) {
+        if (($item->quantity - $quantity) <= 0) {
             $this->delete($userId, $productId);
         } else {
-            $item->decrement('quantity');
+            $item->decrement('quantity', $quantity ?? 1);
         }
     }
 
