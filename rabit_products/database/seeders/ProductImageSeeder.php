@@ -20,21 +20,69 @@ class ProductImageSeeder extends Seeder
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],
-            [
-                'product_id'=>6,
-                'image_url'=>'http://127.0.0.1:8000/thumbnails/Vở chấm dot 120 trang Crabit x SGT - The Furry Friends - Xanh tím.jpg',
+             [
+                'product_id'=>1,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_1/5-b248e823-2b8a-4323-a0a0-45321721702b.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
             ],
              [
-                'product_id'=>18,
+               'product_id' => 1,
+               'image_url' => 'http://127.0.0.1:8000/galleries/product_1/1-72179dad-bb4b-4118-97e0-9490686d7b64.jpg',
+               'created_at' => now(),
+               'updated_at' => now(),
+            ],
+            [
+                'product_id'=>2,
+                'image_url'=>'http://127.0.0.1:8000/thumbnails/Vở chấm dot 120 trang Crabit x SGT - The Furry Friends - Xanh tím.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+            ],
+            [
+                'product_id'=>2,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_2/107-2d72484d-cc1a-4efb-82d8-dfe354802e6e.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+            ],
+            [
+                'product_id'=>2,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_2/121-880b6784-e84d-4e0e-9b22-7e47aea11178.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+            ],
+             [
+                'product_id'=>3,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_3/Set Mini Post Card A Few Notes.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>3,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Set Mini Post Card A Few Notes.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
              [
-                'product_id'=>19,
+                'product_id'=>3,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_3/67-847250de-97a9-4634-bbb5-713097eaac37.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>4,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Box làm đất sét tự khô - Be Happier Clay Craft Box - Box dành cho 1 người (500g).jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>4,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_4/55-6df4fa7d-c2d5-4a75-8353-92526365bbe9.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>4,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_4/3-d3e95042-cad4-4594-a2d1-e1554e071fbd.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
@@ -45,8 +93,32 @@ class ProductImageSeeder extends Seeder
                 'updated_at'=>now(),
              ],
              [
+                'product_id'=>5,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_5/2-92c5e675-c533-494b-9e2b-2e7121de099a.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>5,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_5/5-9e23f069-1c67-4dea-a306-8c3450926271.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
                 'product_id'=>6,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Sổ tay bỏ túi Dot The Furry Friends Crabit x SGT - Cu Lỳ.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>6,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_6/57-3d82b55f-0659-4739-9f6f-74a2d4ce2af3.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>6,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_6/22-57ceccf4-877d-4b16-975c-16c384648546.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
@@ -57,8 +129,32 @@ class ProductImageSeeder extends Seeder
                 'updated_at'=>now(),
              ],
              [
+                'product_id'=>7,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_7/4-3db24105-8acf-4a8b-9025-cb143b70e824.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>7,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_7/25-02c0f2c4-b289-45f8-84fb-d4c63b668604.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
                 'product_id'=>8,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Sổ tay scrapbook A5 grid 130gsm The Reverie Diary - Nhũ Sọc Xanh.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>8,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_8/16-80136798-ea6e-4695-b6ce-192488f52b56.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>8,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_8/22-3be7189e-b8b6-4d4c-8058-a2f3dd59a8ba.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
@@ -69,59 +165,206 @@ class ProductImageSeeder extends Seeder
                 'updated_at'=>now(),
              ],
              [
+                'product_id'=>9,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_9/sketch-vuo-ng-2-08585b18-c03d-4f11-9976-db6b03c70a10.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>9,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_9/sketch-vuo-ng-3-f9f29347-6652-4953-a58b-4fd03b8c06c2.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
                 'product_id'=>10,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Vở kẻ ngang chấm 80 trang B5 giấy Nhật Crabit x Kokuyo Land of Too-Shy 2 - Bananeet Picnic.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
+             [
+                'product_id'=>10,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_10/6-081ffd74-95b9-4f41-91f4-be40a41fb831.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>10,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_10/vo-grid-3-40454de9-2761-4a5f-967f-3378985a56af.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
             [
-                'product_id'=>12,
+                'product_id'=>11,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Vở grid caro 80gsm 100 trang The Reverie Diary - Nơ Hồng To.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
              [
-                'product_id'=>13,
+                'product_id'=>11,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_11/111-6e72985f-fc61-450c-88ef-8a3151ffcca7.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>11,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_11/vo-grid-2-2ee2f5ed-6de4-49aa-8953-da457348e983.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>12,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Vở kẻ ngang 500 trang tặng kèm sticker Composition Collection - Xanh Teal.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
              [
-                'product_id'=>14,
+                'product_id'=>12,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_12/64-d5cd5824-a7a6-4b6b-b462-ccff38b76b69.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>12,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_12/66-33a97efc-81c8-4de4-a08f-78343e95f103.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>13,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Vở cornel grid 120 trang Composition Collection - Tím.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ], 
              [
-              'product_id'=>15,
+                'product_id'=>13,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_13/28-9335a028-6e31-43e1-8910-be3155730403.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+                'product_id'=>13,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_13/32-d08b3c12-c38d-4971-8a93-3c6f01d65fe1.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>14,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Hộp 5 bút gel Kaco Pure - Morandi 2.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ], 
              [
-              'product_id'=>16,
+              'product_id'=>14,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_14/img-0003-b00ab99d-152d-4baa-a6dd-c76b72e6d6f0.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>14,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_14/img-3945-3.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>15,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Sticker Dính Vía Siêu to dán Vali.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
              [
-              'product_id'=>17,
+              'product_id'=>15,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_15/94-08dc198b-49e7-4996-82fa-d9e8a344cd4c.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>15,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_15/97-081019a6-5185-4189-9886-f7c14c2f0dcf.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>16,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Masking Tape cuộn vintage.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
              [
-              'product_id'=>20,
-                'image_url'=>'http://127.0.0.1:8000/thumbnails/Combo 2 bút luyện viết chữ Calligraphy chuyên dụng.jpg',
+              'product_id'=>16,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_1619-362479a3-2de8-47ca-b828-4b3ae4d5f796.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
              [
-              'product_id'=>21,
+              'product_id'=>16,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_16/18.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>17,
+                'image_url'=>'http://127.0.0.1:8000/thumbnails/Combo 2 bút luyện viết chữ Calligraphy chuyên dụng.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+              [
+              'product_id'=>17,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_17/1bb32280-7885-4ade-b3f7-fbe44fc80bd1.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+              [
+              'product_id'=>17,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_17/combo-bu-t-calligraphy-tombow-me-m-pentel-bu-t-calligraphy.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>18,
                 'image_url'=>'http://127.0.0.1:8000/thumbnails/Bộ sách luyện viết Modern Calligraphy & Handwriting.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
+             [
+              'product_id'=>18,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_18/14-6207b806-d3e1-417a-84d3-081d8b863236.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
+             [
+              'product_id'=>18,
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_18/18-acbbe4b9-a153-43a3-926e-f625ab5a8554.jpg',
+                'created_at'=>now(),
+                'updated_at'=>now(),
+             ],
         ]);
-    }
+        $gatewayPublicPath = public_path('galleries');
+      $folders = glob($gatewayPublicPath . "/product_*");
+
+         foreach ($folders as $folderPath) {
+        $folderName = basename($folderPath); 
+        $productId = (int) str_replace("product_", "", $folderName);
+
+        $images = glob($folderPath . "/*.{jpg,png,jpeg,webp,JPG,PNG}", GLOB_BRACE);
+        foreach ($images as $img) {
+            $fileName = basename($img);
+            $relativePath = "galleries/" . $folderName . "/" . $fileName;
+
+            $exists = DB::table('product_image')
+                ->where('product_id', $productId)
+                ->where('image_url', $relativePath)
+                ->exists();
+
+            if (!$exists) {
+                DB::table('product_image')->insert([
+                    'product_id' => $productId,
+                    'image_url'  => $relativePath,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+         }
+      }
+   }
 }
