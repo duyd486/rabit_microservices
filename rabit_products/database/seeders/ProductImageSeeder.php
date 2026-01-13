@@ -339,32 +339,5 @@ class ProductImageSeeder extends Seeder
                 'updated_at'=>now(),
              ],
         ]);
-        $gatewayPublicPath = public_path('galleries');
-      $folders = glob($gatewayPublicPath . "/product_*");
-
-         foreach ($folders as $folderPath) {
-        $folderName = basename($folderPath); 
-        $productId = (int) str_replace("product_", "", $folderName);
-
-        $images = glob($folderPath . "/*.{jpg,png,jpeg,webp,JPG,PNG}", GLOB_BRACE);
-        foreach ($images as $img) {
-            $fileName = basename($img);
-            $relativePath = "galleries/" . $folderName . "/" . $fileName;
-
-            $exists = DB::table('product_image')
-                ->where('product_id', $productId)
-                ->where('image_url', $relativePath)
-                ->exists();
-
-            if (!$exists) {
-                DB::table('product_image')->insert([
-                    'product_id' => $productId,
-                    'image_url'  => $relativePath,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-         }
-      }
    }
 }
