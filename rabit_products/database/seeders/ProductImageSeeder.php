@@ -52,7 +52,7 @@ class ProductImageSeeder extends Seeder
             ],
              [
                 'product_id'=>3,
-                'image_url'=>'http://127.0.0.1:8000/galleries/product_3/Set Mini Post Card A Few Notes.jpg',
+                'image_url'=>'http://127.0.0.1:8000/galleries/product_3/65-38b9cfb0-514d-4b0d-bb05-2510d54b1725.jpg',
                 'created_at'=>now(),
                 'updated_at'=>now(),
              ],
